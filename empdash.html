@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Zen Code</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F5F5F5; /* Light gray background */
+            margin: 0;
+            padding: 0;
+            color: #333; /* Dark gray text */
+        }
+        .logo {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            padding: 30px 0;
+            background: linear-gradient(90deg, #000, #333); /* Black to dark gray gradient */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .nav {
+            background-color: #1D1D1D; /* Dark gray */
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .nav a {
+            color: #F8F1F1; /* Light color for links */
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .nav .active {
+            color: #3AA69B; /* Accent color */
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1; /* Light hover effect */
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dashboard {
+            background: linear-gradient(rgba(38, 38, 38, 0.8), rgba(255, 255, 255, 0.5)), url('https://source.unsplash.com/1600x900/?technology') no-repeat center center;
+            padding: 50px 0;
+            text-align: center;
+            color: white; /* White text */
+        }
+        .dashboard h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .dashboard p {
+            font-size: 18px;
+            color: #EAEAEA; /* Light gray for the paragraph */
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .modal-content button {
+            background-color: #1D1D1D; /* Dark gray */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .modal-content button:hover {
+            background-color: #3AA69B; /* Accent color on hover */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .search-employee-progress {
+            background-color: #FFFFFF; /* White for search box */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333; /* Dark gray label */
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .search-button {
+            background-color: #1D1D1D; /* Dark gray */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover {
+            background-color: #3AA69B; /* Accent color on hover */
+        }
+        .employee-details {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9; /* Light gray background for details */
+            border-radius: 8px;
+            display: none;
+        }
+        .employee-info {
+            margin-bottom: 20px;
+        }
+        .employee-info p {
+            margin: 5px 0;
+        }
+        .progress-report {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="logo">
+        Zen Code<span>.</span>
+    </div>
+    <div class="nav">
+        <a class="active" href="ZEN.CODE.html">Home</a>
+        <div class="dropdown">
+            <a href="#">Login</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="openModal('admin')">Admin</a>
+                <!-- <a href="#" onclick="openModal('employee')">Employee</a> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Content -->
+    <div class="dashboard">
+        <h1>Welcome, Employee!</h1>
+        <p>Track your progress here.</p>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('admin')">&times;</span>
+            <h2>Admin Login</h2>
+            <form onsubmit="event.preventDefault(); handleLogin('admin');">
+                <label for="admin-email">Email</label>
+                <input id="admin-email" name="admin-email" placeholder="Enter your email" type="email" />
+                <label for="admin-password">Password</label>
+                <input id="admin-password" name="admin-password" placeholder="Enter your password" type="password" />
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Employee Modal -->
+    <div class="modal" id="employee-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('employee')">&times;</span>
+            <h2>Employee Login</h2>
+            <form onsubmit="event.preventDefault(); handleLogin('employee');">
+                <label for="employee-email">Email</label>
+                <input id="employee-email" name="employee-email" placeholder="Enter your email" type="email" />
+                <label for="employee-password">Password</label>
+                <input id="employee-password" name="employee-password" placeholder="Enter your password" type="password" />
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 style="text-align: center; margin: 20px 0;">Search Your Progress</h2>
+        <div class="search-employee-progress">
+            <form id="employee-form">
+                <div class="form-group">
+                    <label for="employee-name">Enter Your Name:</label>
+                    <input type="text" id="employee-name" placeholder="e.g., John Doe" required>
+                </div>
+                <button type="submit" class="search-button">Search</button>
+            </form>
+            <div id="employee-details" class="employee-details">
+                <h3 id="emp-name"></h3>
+                <div class="employee-info">
+                    <p><strong>Role:</strong> <span id="emp-role"></span></p>
+                    <p><strong>Email:</strong> <span id="emp-email"></span></p>
+                    <p><strong>Status:</strong> <span id="emp-status"></span></p>
+                </div>
+                <div class="progress-report">
+                    <h4>Progress Report</h4>
+                    <p id="progress-report"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Same JavaScript for login logic
+        const database = {
+            admin: {
+                email: "admin@zencode.com",
+                password: "admin123"
+            },
+            employee: {
+                email: "employee@zencode.com",
+                password: "employee123"
+            }
+        };
+
+        function handleLogin(userType) {
+            const emailInput = document.getElementById(`${userType}-email`).value;
+            const passwordInput = document.getElementById(`${userType}-password`).value;
+            if (emailInput === database[userType].email && passwordInput === database[userType].password) {
+                alert(`Welcome, ${userType}!`);
+                if (userType === 'admin') {
+                    window.location.href = "admin_dashboard.html"; 
+                } else if (userType === 'employee') {
+                    window.location.href = "employee_dashboard.html"; 
+                }
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+        }
+
+        function openModal(userType) {
+            document.getElementById(`${userType}-modal`).style.display = "block";
+        }
+
+        function closeModal(userType) {
+            document.getElementById(`${userType}-modal`).style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+
+        const employees = {
+            "John Doe": {
+                name: "John Doe",
+                role: "Software Developer",
+                email: "john.doe@company.com",
+                status: "Active",
+                progressReport: "Completed 5 out of 7 assigned tasks. Current project: Web App Development."
+            },
+            "Jane Smith": {
+                name: "Jane Smith",
+                role: "UI/UX Designer",
+                email: "jane.smith@company.com",
+                status: "On Leave",
+                progressReport: "Completed 3 out of 4 design sprints. Pending feedback for next iterations."
+            },
+            "Michael Johnson": {
+                name: "Michael Johnson",
+                role: "Product Manager",
+                email: "michael.johnson@company.com",
+                status: "Active",
+                progressReport: "Leading 2 ongoing projects. 4 out of 5 project milestones achieved."
+            }
+        };
+
+        // Form submission handler
+        document.getElementById('employee-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const employeeName = document.getElementById('employee-name').value.trim();
+            
+            if (employees[employeeName]) {
+                // Display employee details
+                document.getElementById('employee-details').style.display = 'block';
+                document.getElementById('emp-name').textContent = employees[employeeName].name;
+                document.getElementById('emp-role').textContent = employees[employeeName].role;
+                document.getElementById('emp-email').textContent = employees[employeeName].email;
+                document.getElementById('emp-status').textContent = employees[employeeName].status;
+                document.getElementById('progress-report').textContent = employees[employeeName].progressReport;
+            } else {
+                // Hide details and show a message if employee not found
+                document.getElementById('employee-details').style.display = 'none';
+                alert("Employee not found. Please check the name and try again.");
+            }
+        });
+    </script>
+
+</body>
+</html>
