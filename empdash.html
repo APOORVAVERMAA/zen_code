@@ -299,9 +299,9 @@
             if (emailInput === database[userType].email && passwordInput === database[userType].password) {
                 alert(`Welcome, ${userType}!`);
                 if (userType === 'admin') {
-                    window.location.href = "admin_dashboard.html"; 
+                    window.location.href = "admindash.html"; 
                 } else if (userType === 'employee') {
-                    window.location.href = "employee_dashboard.html"; 
+                    window.location.href = "empdash.html"; 
                 }
             } else {
                 alert("Invalid credentials. Please try again.");
