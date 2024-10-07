@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Zen Code</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F5F5F5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .logo {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            padding: 30px 0;
+            background: linear-gradient(90deg, #000, #333);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .nav {
+            background-color: #1D1D1D;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .nav a {
+            color: #F8F1F1;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .nav .active {
+            color: #3AA69B;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .dashboard {
+            background: linear-gradient(rgba(38, 38, 38, 0.8), rgba(255, 255, 255, 0.5)), url('https://source.unsplash.com/1600x900/?technology') no-repeat center center;
+            padding: 50px 0;
+            text-align: center;
+            color: white;
+        }
+        .dashboard h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .dashboard p {
+            font-size: 18px;
+            color: #EAEAEA;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #333;
+            border-bottom: 2px solid #3AA69B;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        select, input, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3AA69B;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2C7A73;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        Zen Code<span>.</span>
+    </div>
+    <div class="nav">
+        <a class="active" href="zencode.com.html">Home</a>
+        <a href="#assign-task">Assign Task</a>
+        <a href="#message-employee">Message Employee</a>
+    </div>
+
+    <div class="dashboard">
+        <h1>Welcome, Admin!</h1>
+        <p>Manage your tasks and employees here.</p>
+    </div>
+
+    <div class="container">
+        <div id="assign-task" class="section">
+            <h2>Assign Task</h2>
+            <form id="assignTaskForm">
+                <select id="employeeSelect" required>
+                    <option value="">Select Employee</option>
+                </select>
+                <input type="text" id="taskDescription" placeholder="Task Description" required>
+                <button type="submit">Assign Task</button>
+            </form>
+        </div>
+
+        <div id="message-employee" class="section">
+            <h2>Message Employee</h2>
+            <form id="messageForm">
+                <select id="employeeMessageSelect" required>
+                    <option value="">Select Employee</option>
+                </select>
+                <textarea id="messageContent" placeholder="Your message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const employees = [
+            { id: "EMP001", name: "John Doe" },
+            { id: "EMP002", name: "Jane Smith" },
+            { id: "EMP003", name: "Bob Johnson" },
+            { id: "EMP004", name: "Alice Brown" }
+        ];
+
+        function populateEmployeeSelects() {
+            const selects = [document.getElementById('employeeSelect'), document.getElementById('employeeMessageSelect')];
+            
+            selects.forEach(select => {
+                employees.forEach(emp => {
+                    const option = document.createElement('option');
+                    option.value = emp.id;
+                    option.textContent = `${emp.name} (${emp.id})`;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        document.getElementById('assignTaskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const employeeId = document.getElementById('employeeSelect').value;
+            const taskDescription = document.getElementById('taskDescription').value;
+            
+            if (employeeId && taskDescription) {
+                alert(`Task assigned to employee ${employeeId}: ${taskDescription}`);
+                this.reset();
+            } else {
+                alert('Please select an employee and enter a task description.');
+            }
+        });
+
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const employeeId = document.getElementById('employeeMessageSelect').value;
+            const messageContent = document.getElementById('messageContent').value;
+            
+            if (employeeId && messageContent) {
+                alert(`Message sent to employee ${employeeId}: ${messageContent}`);
+                this.reset();
+            } else {
+                alert('Please select an employee and enter a message.');
+            }
+        });
+
+        populateEmployeeSelects();
+    </script>
+</body>
+</html>
