@@ -11,106 +11,94 @@
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #FAFAFA;
-            color: #333;
+            background-color: #FFFFFF;
+            color: #333333;
         }
-
-        /* HEADER */
         .header {
-            background-color: #3AA69B;
+            background-color: #F5F5F5;
             padding: 20px;
             text-align: center;
-            color: white;
+            color: #333333;
         }
-
-        .header h1 {
+        .logo {
             font-size: 3rem;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
+            opacity: 0;
+            filter: blur(10px);
+            animation: fadeInBlur 2s forwards;
         }
-
-        /* NAVIGATION */
+        @keyframes fadeInBlur {
+            0% { opacity: 0; filter: blur(10px); }
+            100% { opacity: 1; filter: blur(0); }
+        }
         .nav {
             display: flex;
             justify-content: center;
-            background-color: #264653;
+            background-color: #D3D3D3;
             padding: 10px 0;
         }
-
         .nav a {
-            color: #FFF;
+            color: #333333;
             text-decoration: none;
             margin: 0 15px;
             font-size: 1.2rem;
             font-weight: bold;
             text-transform: uppercase;
         }
-
         .nav a:hover {
-            color: #E9C46A;
+            color: #A9A9A9;
         }
-
-        /* DROPDOWN */
         .dropdown {
             position: relative;
             display: inline-block;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #264653;
+            background-color: #D3D3D3;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
         .dropdown-content a {
-            color: #FFF;
+            color: #333333;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             font-size: 1rem;
         }
-
         .dropdown-content a:hover {
-            background-color: #3AA69B;
+            background-color: #F5F5F5;
         }
-
-        /* BANNER */
         .banner {
-            background: linear-gradient(rgba(38, 70, 83, 0.7), rgba(42, 157, 143, 0.7)), url('https://source.unsplash.com/1600x900/?technology') no-repeat center center;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1600x900/?technology') no-repeat center center;
             background-size: cover;
             height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
         }
-
         .banner h1 {
             font-size: 4rem;
-            color: #FFF;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            color: #FFFFFF;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
-
         .banner p {
             font-size: 1.5rem;
-            color: #E9C46A;
+            color: #D3D3D3;
             margin-top: 10px;
         }
-
-        /* GRID SECTION */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             padding: 50px;
         }
-
         .grid-item {
             background-color: #FFFFFF;
             border-radius: 15px;
@@ -119,30 +107,24 @@
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .grid-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-
         .grid-item img {
             width: 80px;
             height: 80px;
             margin-bottom: 20px;
         }
-
         .grid-item h2 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #264653;
+            color: #333333;
         }
-
         .grid-item p {
             font-size: 1.1rem;
-            color: #555;
+            color: #555555;
         }
-
-        /* CONTACT US SECTION */
         .contact-us {
             background-color: #FFFFFF;
             padding: 40px;
@@ -152,20 +134,18 @@
             border-radius: 10px;
             text-align: center;
         }
-
         .contact-us h2 {
             font-size: 2rem;
-            color: #264653;
+            color: #333333;
             margin-bottom: 20px;
         }
-
         .contact-us form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
-        .contact-us form input, .contact-us form textarea {
+        .contact-us form input,
+        .contact-us form textarea {
             width: 100%;
             padding: 15px;
             margin-bottom: 15px;
@@ -173,41 +153,33 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-
         .contact-us form button {
             padding: 10px 30px;
-            background-color: #2A9D8F;
+            background-color: #333333;
             border: none;
-            color: #FFF;
+            color: #FFFFFF;
             cursor: pointer;
             font-size: 1.1rem;
             border-radius: 5px;
         }
-
         .contact-us form button:hover {
-            background-color: #21867A;
+            background-color: #A9A9A9;
         }
-
-        /* FOOTER */
         .footer {
-            background-color: #264653;
-            color: #FFF;
+            background-color: #F5F5F5;
+            color: #333333;
             text-align: center;
             padding: 20px 0;
             margin-top: 50px;
         }
-
         .footer a {
-            color: #E9C46A;
+            color: #A9A9A9;
             text-decoration: none;
             margin: 0 10px;
         }
-
         .footer a:hover {
             text-decoration: underline;
         }
-
-        /* MODALS */
         .modal {
             display: none;
             position: fixed;
@@ -216,39 +188,34 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.4);
             justify-content: center;
             align-items: center;
         }
-
         .modal-content {
-            background-color: #FFF;
+            background-color: #FFFFFF;
             padding: 20px;
             border-radius: 10px;
             width: 90%;
             max-width: 400px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-
         .modal-content h2 {
             margin: 0 0 15px;
+            color: #333333;
         }
-
         .close {
             color: #888;
             float: right;
             font-size: 28px;
         }
-
         .close:hover {
             color: #333;
         }
-
         .modal-content form label {
             display: block;
             margin-top: 10px;
         }
-
         .modal-content form input {
             width: 100%;
             padding: 10px;
@@ -257,31 +224,29 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-
         .modal-content form button {
             width: 100%;
             padding: 10px;
-            background-color: #2A9D8F;
+            background-color: #333333;
             border: none;
-            color: #FFF;
+            color: #FFFFFF;
             margin-top: 20px;
             cursor: pointer;
             font-size: 1.1rem;
             border-radius: 5px;
         }
-
         .modal-content form button:hover {
-            background-color: #21867A;
+            background-color: #A9A9A9;
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <h1>Zen Code</h1>
+        <h1 class="logo">Zen Code<span>.</span></h1>
     </header>
 
     <nav class="nav">
-        <a href="#">Home</a>
+        <a href="#" class="active">Home</a>
         <div class="dropdown">
             <a href="#">Login</a>
             <div class="dropdown-content">
@@ -302,7 +267,7 @@
         <div class="grid-item">
             <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-ArVMGnQ1Y0vEn147s4FXk7WK.png" alt="Web Development Icon">
             <h2>Web Development</h2>
-            <p>We build stunning and responsive websites that capture your brand’s essence.</p>
+            <p>We build stunning and responsive websites that capture your brand's essence.</p>
         </div>
         <div class="grid-item">
             <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-8oaVxIzmAf04MJ5HNdBxdQek.png" alt="App Development Icon">
@@ -316,7 +281,6 @@
         </div>
     </section>
 
-    <!-- CONTACT US SECTION -->
     <section class="contact-us">
         <h2>Contact Us</h2>
         <form id="contactForm">
@@ -327,7 +291,6 @@
         </form>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <p>&copy; 2024 Zen Code. All Rights Reserved.</p>
         <p>
@@ -336,7 +299,6 @@
         </p>
     </footer>
 
-    <!-- MODALS -->
     <div id="adminModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('admin')">&times;</span>
@@ -365,77 +327,60 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
-        // Open modal
+        const employeeDatabase = {
+            "emp001": { email: "john@zencode.com", password: "john123", name: "John Doe" },
+            "emp002": { email: "jane@zencode.com", password: "jane123", name: "Jane Smith" },
+            "emp003": { email: "bob@zencode.com", password: "bob123", name: "Bob Johnson" },
+            "emp004": { email: "alice@zencode.com", password: "alice123", name: "Alice Brown" },
+        };
+
+        const adminDatabase = {
+            "admin": { email: "admin@zencode.com", password: "admin123" },
+        };
+
         function openModal(type) {
             document.getElementById(type + 'Modal').style.display = 'flex';
         }
 
-        // Close modal
         function closeModal(type) {
             document.getElementById(type + 'Modal').style.display = 'none';
         }
 
-        // Define the databases for admin and employee
-const adminDatabase = {
-    "admin": {
-        email: "admin@zencode.com",
-        password: "admin123"
-    },
-    // "admin2": {
-    //     email: "admin2@zencode.com",
-    //     password: "admin456"
-    // }
-};
+        document.getElementById('adminLoginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const adminEmail = document.getElementById('adminEmail').value;
+            const adminPassword = document.getElementById('adminPassword').value;
 
-const employeeDatabase = {
-    "employee": {
-        email: "employee@zencode.com",
-        password: "employee123"
-    },
-    // "employee2": {
-    //     email: "employee2@zencode.com",
-    //     password: "employee456"
-    // }
-};
+            if (adminDatabase.admin.email === adminEmail && adminDatabase.admin.password === adminPassword) {
+                alert('Admin login successful!');
+                window.location.href = "admin_dash.html";
+            } else {
+                alert('Invalid Admin credentials. Please try again.');
+            }
+        });
 
-// Admin Login Functionality
-document.getElementById('adminLoginForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-    const adminEmail = document.getElementById('adminEmail').value;
-    const adminPassword = document.getElementById('adminPassword').value;
+        document.getElementById('employeeLoginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const employeeEmail = document.getElementById('employeeEmail').value;
+            const employeePassword = document.getElementById('employeePassword').value;
 
-    for (const admin in adminDatabase) {
-        if (adminDatabase[admin].email === adminEmail && adminDatabase[admin].password === adminPassword) {
-            alert('Admin login successful!');
-            window.location.href = "admin_dashboard.html";
-            return;
+            for (const employee in employeeDatabase) {
+                if (employeeDatabase[employee].email === employeeEmail && employeeDatabase[employee].password === employeePassword) {
+                    alert('Employee login successful!');
+                    window.location.href = "empdash.html";
+                    return;
+                }
+            }
+
+            alert('Invalid Employee credentials. Please try again.');
+        });
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
         }
-    }
-
-    alert('Invalid Admin credentials. Please try again.');
-});
-
-// Employee Login Functionality
-document.getElementById('employeeLoginForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-    const employeeEmail = document.getElementById('employeeEmail').value;
-    const employeePassword = document.getElementById('employeePassword').value;
-
-    for (const employee in employeeDatabase) {
-        if (employeeDatabase[employee].email === employeeEmail && employeeDatabase[employee].password === employeePassword) {
-            alert('Employee login successful!');
-            window.location.href = "employee_dashboard.html";
-            return;
-        }
-    }
-
-    alert('Invalid Employee credentials. Please try again.');
-});
-
-        
     </script>
 </body>
 </html>
-
